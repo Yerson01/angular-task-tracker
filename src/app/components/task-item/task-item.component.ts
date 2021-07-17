@@ -1,0 +1,28 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Task } from 'src/app/models/Task';
+
+@Component({
+  selector: 'task-item',
+  templateUrl: './task-item.component.html',
+  styleUrls: ['./task-item.component.scss'],
+})
+export class TaskItemComponent implements OnInit {
+  @Input() task: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
+
+  faTimes: IconDefinition = faTimes;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  onDelete(task: Task): void {
+    this.onDeleteTask.emit(task);
+  }
+
+  onToggle(task: Task): void {
+    this.onToggleReminder.emit(task);
+  }
+}
